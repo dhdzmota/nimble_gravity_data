@@ -2,21 +2,35 @@ import os
 import pandas as pd
 import json
 
+SCHEMA = 'ces_schema'
 
 def sql_generator(file_info_dict):
+    """ This function generates a SQL query that creates the corresponding tables of the database depending on the
+     information provided in a file_info dict.
+
+     Parameters:
+         file_info_dict dict: Dictionary that must have in it's keys: table_name, cols_types, and file_path.
+     Returns:
+         sql_text str: String that contains the structure to create tables.
+    """
     table_name = file_info_dict['table_name']
     cols_with_types = ",\n\t".join([f"{col} {type}" for col, type in file_info_dict['cols_types'].items()])
     data_path = file_info_dict['file_path']
     sql_text = f"""
-DROP TABLE IF EXISTS ces_schema.{table_name};
-CREATE TABLE ces_schema.{table_name}(
+DROP TABLE IF EXISTS {SCHEMA}.{table_name};
+CREATE TABLE {SCHEMA}.{table_name}(
     {cols_with_types}
 );
-\COPY ces_schema.{table_name} FROM {data_path} DELIMITER E'\\t' CSV HEADER;
+\COPY {SCHEMA}.{table_name} FROM {data_path} DELIMITER E'\\t' CSV HEADER;
     """
     return sql_text
 
 def main():
+    """
+    This main function will generate (or write over) a file named create_tables.sql using all the information that
+    lives inside the .txt files that were previously downloaded by using some additional such as data_types.json, which
+    is a file that maps the type of datatypes from pandas dataframe to sql for table construction.
+    """
     file_path = os.path.dirname(os.path.abspath(__file__))
     general_path = os.path.join(file_path, '..',)
     data_path = os.path.join(general_path, 'data', 'raw')

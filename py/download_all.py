@@ -10,6 +10,17 @@ URL = 'https://download.bls.gov/pub/time.series/ce/'
 BASE_URL = 'http://download.bls.gov'
 
 def download_file(url, path, headers, chunk_size):
+    """This function gets the URL and downloads the file in the desired path (using streaming)
+
+    Parameters:
+        url str: A string representation of the url
+        path str: A string of the desired path where the file must be saved.
+        headers dict: Dictionary containing information on the headers for the request.
+        chunk_size: The chunk size for the iteration on the content that is found in the URL.
+
+    Returns:
+        local_filename str: String of the name of the file which is obtained from the URL.
+    """
     local_filename = url.split('/')[-1].replace('.', '_') + '.txt'
     path_to_save = os.path.join(path, local_filename)
     with requests.get(url, stream=True, headers=headers) as r:
@@ -20,12 +31,26 @@ def download_file(url, path, headers, chunk_size):
     return local_filename
 
 def get_links_list_from_url(url, headers, complementary_link_info):
+    """ This function gets all the links that are in the html data of an URL.
+
+    Parameters:
+        url str: A string representation of the url
+        headers dict: Dictionary containing information on the headers for the request.
+        complementary_link_info str: Additional information that goes before a link.
+
+    Returns:
+        all_links list: List of all the links that are found in the URL.
+
+    """
     page = requests.get(url, headers=headers)
     webpage = html.fromstring(page.content)
     all_links = [f'{complementary_link_info}{link}' for link in webpage.xpath('//a/@href')]
     return all_links
 
 def main():
+    """
+    Main function to get and download all the files that are found in the desired link.
+    """
     file_path = os.path.dirname(os.path.abspath(__file__))
     general_path = os.path.join(file_path, '..',)
     data_path = os.path.join(general_path, 'data', 'raw')
