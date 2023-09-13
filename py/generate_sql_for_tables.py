@@ -8,11 +8,11 @@ def sql_generator(file_info_dict):
     cols_with_types = ",\n\t".join([f"{col} {type}" for col, type in file_info_dict['cols_types'].items()])
     data_path = file_info_dict['file_path']
     sql_text = f"""
-DROP TABLE IF EXISTS example.{table_name};
-CREATE TABLE example.{table_name}(
+DROP TABLE IF EXISTS ces_schema.{table_name};
+CREATE TABLE ces_schema.{table_name}(
     {cols_with_types}
 );
-\COPY example.{table_name} FROM {data_path} DELIMITER E'\\t' CSV HEADER;
+\COPY ces_schema.{table_name} FROM {data_path} DELIMITER E'\\t' CSV HEADER;
     """
     return sql_text
 

@@ -67,6 +67,7 @@ Also, we assume that postgresql is installed. If it is not, please run the follo
 
 After this is done, we should start the postgresql service, this can be done by executing `sudo service postgresql start`.
 
-Be sure to have a new virtual python virtual environment. 
+Be sure to have a new virtual python virtual environment and start it `source venv/bin/activate`
+then install the python requirements: `pip install -r requirements.txt`
 
 Once this is done, execute the following command to run the main script: `sudo -u postgres bash setup.sh`

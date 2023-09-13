@@ -1,6 +1,7 @@
 -- How was the evolution of women in government during time?
-DROP TABLE IF EXISTS example.women_in_government;
-CREATE TABLE example.women_in_government AS (
+DROP TABLE IF EXISTS ces_schema.women_in_government;
+
+CREATE TABLE ces_schema.women_in_government AS (
     SELECT
         CONCAT(TRIM(month), ' ', year) as date,
         value_in_thousands
@@ -9,12 +10,12 @@ CREATE TABLE example.women_in_government AS (
             period,
             year,
             sum(value) as value_in_thousands
-        FROM example.ce_data_0_allcesseries
+        FROM ces_schema.ce_data_0_allcesseries
         WHERE series_id IN (
             SELECT series_id
-            FROM example.ce_series
-            LEFT JOIN example.ce_supersector USING(supersector_code)
-            LEFT JOIN example.ce_datatype USING(data_type_code)
+            FROM ces_schema.ce_series
+            LEFT JOIN ces_schema.ce_supersector USING(supersector_code)
+            LEFT JOIN ces_schema.ce_datatype USING(data_type_code)
             WHERE
                 -- We are selecting the government super sector
                 supersector_name='Government'
@@ -24,13 +25,13 @@ CREATE TABLE example.women_in_government AS (
         AND period!='M13'
         GROUP BY year, period
     ) AS women_in_goverment
-    LEFT JOIN example.ce_period USING (period)
+    LEFT JOIN ces_schema.ce_period USING (period)
     ORDER BY year, period
 );
 
 
 -- How was the evolution of the ratio "production employees / supervisory employees" during time?
---DROP TABLE IF EXISTS example.temporal_production_employees;
+--DROP TABLE IF EXISTS ces_schema.temporal_production_employees;
 CREATE TEMPORARY TABLE temporal_production_employees AS (
     SELECT
         CONCAT(TRIM(month), ' ', year) as date,
@@ -40,18 +41,18 @@ CREATE TEMPORARY TABLE temporal_production_employees AS (
             period,
             year,
             sum(value) as value_in_thousands
-        FROM example.ce_data_0_allcesseries
+        FROM ces_schema.ce_data_0_allcesseries
         WHERE series_id in (
             SELECT series_id
-            FROM example.ce_series
-            LEFT JOIN example.ce_datatype USING(data_type_code)
+            FROM ces_schema.ce_series
+            LEFT JOIN ces_schema.ce_datatype USING(data_type_code)
             --- Here we are getting the PRODUCTION AND NONSUPERVISORY EMPLOYEES, THOUSANDS
             WHERE data_type_code=6
         )
         AND period != 'M13'
         GROUP BY year, period
     ) AS production_employees
-    LEFT JOIN example.ce_period USING (period)
+    LEFT JOIN ces_schema.ce_period USING (period)
 );
 
 CREATE TEMPORARY TABLE temporal_all_employees AS (
@@ -65,21 +66,21 @@ CREATE TEMPORARY TABLE temporal_all_employees AS (
             period,
             year,
             sum(value) as value_in_thousands
-        FROM example.ce_data_0_allcesseries
+        FROM ces_schema.ce_data_0_allcesseries
         WHERE series_id in (
             SELECT series_id
-            FROM example.ce_series
-            LEFT JOIN example.ce_datatype USING(data_type_code)
+            FROM ces_schema.ce_series
+            LEFT JOIN ces_schema.ce_datatype USING(data_type_code)
             --- Here we are getting the ALL EMPLOYEES, THOUSANDS
             WHERE data_type_code=1
         )
         AND period != 'M13'
         GROUP BY year, period
     ) AS production_employees
-    LEFT JOIN example.ce_period USING (period)
+    LEFT JOIN ces_schema.ce_period USING (period)
 );
 
-CREATE TABLE example.ratio_production_supervisory AS (
+CREATE TABLE ces_schema.ratio_production_supervisory AS (
     SELECT
         date,
         -- We assume that the supervisory employees are the remaining employees of the operation:
