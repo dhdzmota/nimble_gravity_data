@@ -14,17 +14,3 @@ Include a headers in the request.
 ´´´
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
 ´´´
-
-### Problem 2: 
-Data Availability in the desired schedule:
-National Current Employment Statistics (CES) Contacts 
-
-Branch of National Industry Employment Statistics: 
-
-     Data Requests and Other Information: (202) 691-6555 
-     Industry Analysts available from 8:30 a.m. to 4:30 p.m. Eastern Time 
-     FAX (202) 691-6641 
-     E-mail: cesinfo@bls.gov
-### Solution 2: 
-Try to access the data in the stipulated time. 
-
