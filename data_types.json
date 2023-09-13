@@ -1,0 +1,5 @@
+{
+  "object": "TEXT",
+  "int64": "FLOAT8",
+  "float64": "TEXT"
+}
