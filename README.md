@@ -38,7 +38,9 @@ Project Organization
     └── setup.sh            <- Main file that contains all the commands to solve the challenge. 
 
 
-After the `setup.sh` file is executed, you should be able to open the following links (in localhost):
+After the `setup.sh` file is executed, you should be able to open the following links (in localhost).
+To run the file you should use the following command `sudo -u postgres bash setup.sh`. However, you must go to the 
+`IMPORTANT` section of this README to see additional requirements.
 
 - Women in Goverment:
   - http://localhost:3000/women_in_government
@@ -70,6 +72,6 @@ Also, we assume that postgresql is installed. If it is not, please run the follo
 
 After this is done, we should start the postgresql service, this can be done by executing `sudo service postgresql start`.
 
-Be sure to have the python requirements: `pip install -r requirements.txt`
+Be sure to have the python requirements (must be with sudo): `sudo pip install -r requirements.txt`
 
 Once this is done, execute the following command to run the main script: `sudo -u postgres bash setup.sh`

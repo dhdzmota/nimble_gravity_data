@@ -4,7 +4,7 @@ psql -d ces -f sql/create_schema.sql
 
 # Download the data into txt files
 # (if data is already downloaded in the desire file you can comment the following line)
-#python3 py/download_all.py
+python3 py/download_all.py
 
 # Generate script to create tables
 python3 py/generate_sql_for_tables.py
