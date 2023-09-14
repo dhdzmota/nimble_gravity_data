@@ -41,9 +41,11 @@ After the `setup.sh` file is executed, you should be able to open the following 
 
 - Women in Goverment:
   - http://localhost:3000/women_in_government
+  - http://localhost:3000/women_in_government_evolution
 
 - Ratio of production employees vs supervisory employees
   - http://localhost:3000/ratio_production_supervisory
+  - http://localhost:3000/ratio_production_supervisory_evolution
 
 Important:
 -------------
