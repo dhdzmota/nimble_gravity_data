@@ -24,7 +24,7 @@ Project Organization
     │
     ├── sql                 <- SQL code for use in this project
     │   ├── analysis_query.sql    <- File that contains query for the challenge resolution  
-    │                                (here you should find the logic to answer the challenge questions).
+    │   │                            (here you should find the logic to answer the challenge questions).
     │   ├── configure_postgrest_role.sql    <- File to create and grant permissions to role.
     │   ├── configure_postgrest_user.sql    <- File to create and grant permissions to user.
     │   ├── create_database.sql    <- File to create the desired database.
@@ -32,6 +32,8 @@ Project Organization
     │   ├── create_tables.sql    <- File that contains logic to create tables 
     │   │                           (this is created/modified by `generate_sql_for_tables.py` script).
     │   └── test_query.sql  <- File that contains query to see if tables were created.
+    │   
+    ├── figures                 <- folder with the images of the results of the challenge as screenshots.
     │                           
     ├── data_types.json     <- JSON dictionary that maps pandas objects name (dtypes of a dataframe) to sql data types.
     ├── postgrest-config.conf     <- Config file needed for the execution of postgrest.
@@ -75,3 +77,22 @@ After this is done, we should start the postgresql service, this can be done by 
 Be sure to have the python requirements (must be with sudo): `sudo pip install -r requirements.txt`
 
 Once this is done, execute the following command to run the main script: `sudo -u postgres bash setup.sh`
+
+
+Results:
+-------------
+If everything went well, you should see the following results: 
+- Women in Government
+  - http://localhost:3000/women_in_government
+![Women in government](figures/women_in_government.PNG "Women in government")
+
+  - http://localhost:3000/women_in_government_evolution
+![Women in government evolution](figures/women_in_government.PNG "Women in government evolution")
+
+- Ratio of production employees vs supervisory employees
+  - http://localhost:3000/ratio_production_supervisory
+![Ratio of production employees vs supervisory employees](figures/ratio_production_supervisory.PNG "Ratio")
+
+  - http://localhost:3000/ratio_production_supervisory_evolution
+![Ratio of production employees vs supervisory employees evolution](figures/ratio_production_supervisory_evolution.PNG "Ratio evolution")
+
