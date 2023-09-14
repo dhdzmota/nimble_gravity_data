@@ -22,8 +22,9 @@ Project Organization
     │   ├── download_all.py    <- File to download all the data.
     │   └── generate_sql_for_tables.py  <- Creates the `create_database.sql` script with the raw data info.
     │
-    ├── sql                 <- Python code for use in this project
-    │   ├── analysis_query.sql    <- File that contains query for the challenge resolution.
+    ├── sql                 <- SQL code for use in this project
+    │   ├── analysis_query.sql    <- File that contains query for the challenge resolution  
+    │                                (here you should find the logic to answer the challenge questions).
     │   ├── configure_postgrest_role.sql    <- File to create and grant permissions to role.
     │   ├── configure_postgrest_user.sql    <- File to create and grant permissions to user.
     │   ├── create_database.sql    <- File to create the desired database.
